@@ -1,9 +1,125 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+:root {
+    --anahaw-forest: #174b35;
+    --anahaw-leaf: #4b914b;
+    --anahaw-light: #edf5ed;
+    --anahaw-border: #dbe8dc;
+    --anahaw-text: #26352b;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+body {
+    color: var(--anahaw-text);
+    background: #fff;
+}
+
+.navbar-anahaw {
+    background: #fff;
+    border-bottom: 1px solid var(--anahaw-border);
+    box-shadow: 0 2px 12px rgb(23 75 53 / 6%);
+}
+
+.navbar-anahaw .navbar-brand,
+.navbar-anahaw .nav-link {
+    color: var(--anahaw-forest);
+}
+
+.navbar-anahaw .nav-link:hover,
+.navbar-anahaw .nav-link.active {
+    color: var(--anahaw-leaf);
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.navbar-anahaw .btn-outline-light {
+    color: var(--anahaw-forest);
+    border-color: var(--anahaw-leaf);
+}
+
+.navbar-anahaw .btn-outline-light:hover {
+    color: #fff;
+    background: var(--anahaw-forest);
+    border-color: var(--anahaw-forest);
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--anahaw-forest);
+    --bs-btn-border-color: var(--anahaw-forest);
+    --bs-btn-hover-bg: var(--anahaw-leaf);
+    --bs-btn-hover-border-color: var(--anahaw-leaf);
+    --bs-btn-active-bg: var(--anahaw-forest);
+    --bs-btn-active-border-color: var(--anahaw-forest);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--anahaw-forest);
+    --bs-btn-border-color: var(--anahaw-leaf);
+    --bs-btn-hover-bg: var(--anahaw-forest);
+    --bs-btn-hover-border-color: var(--anahaw-forest);
+}
+
+.btn-outline-secondary {
+    --bs-btn-color: var(--anahaw-forest);
+    --bs-btn-border-color: var(--anahaw-border);
+    --bs-btn-hover-bg: var(--anahaw-light);
+    --bs-btn-hover-border-color: var(--anahaw-leaf);
+}
+
+.card,
+.table-responsive {
+    border-color: var(--anahaw-border);
+}
+
+.card-header,
+.table-light {
+    --bs-card-cap-bg: var(--anahaw-light);
+    --bs-table-bg: var(--anahaw-light);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--anahaw-leaf);
+    box-shadow: 0 0 0 .25rem rgb(75 145 75 / 16%);
+}
+
+.auth-page {
+    background: #fff;
+}
+
+.auth-page .auth-brand {
+    color: var(--anahaw-forest);
+}
+
+.auth-page a {
+    color: var(--anahaw-forest);
+}
+
+.auth-page a:hover {
+    color: var(--anahaw-leaf);
+}
+
+.auth-page input:not([type="checkbox"]) {
+    border-color: var(--anahaw-border);
+    border-radius: .5rem;
+}
+
+.auth-page input:not([type="checkbox"]):focus {
+    border-color: var(--anahaw-leaf);
+    --tw-ring-color: var(--anahaw-leaf);
+}
+
+.auth-page button[type="submit"] {
+    border-radius: .5rem;
+    background: var(--anahaw-forest);
+}
+
+.auth-page button[type="submit"]:hover {
+    background: var(--anahaw-leaf);
 }

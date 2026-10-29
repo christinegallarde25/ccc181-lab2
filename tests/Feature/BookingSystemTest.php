@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Booking;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
@@ -13,6 +14,8 @@ class BookingSystemTest extends TestCase
 
     public function test_dashboard_shows_the_ongoing_event_and_its_capacity_level(): void
     {
+        $this->actingAs(User::factory()->create());
+
         Booking::create([
             'event_name' => 'Community Gathering',
             'organizer' => 'City Government',
@@ -23,6 +26,9 @@ class BookingSystemTest extends TestCase
         ]);
 
         $this->get('/')
+            ->assertRedirect(route('dashboard'));
+
+        $this->get(route('dashboard'))
             ->assertOk()
             ->assertSee('Community Gathering')
             ->assertSee('6,000')
@@ -56,6 +62,8 @@ class BookingSystemTest extends TestCase
 
     public function test_dashboard_count_can_be_set_and_adjusted_without_going_below_zero(): void
     {
+        $this->actingAs(User::factory()->create());
+
         $booking = Booking::create([
             'event_name' => 'Community Gathering',
             'organizer' => 'City Government',
@@ -84,6 +92,8 @@ class BookingSystemTest extends TestCase
 
     public function test_booking_creation_rejects_expected_attendance_above_capacity(): void
     {
+        $this->actingAs(User::factory()->create());
+
         $this->from(route('bookings.create'))
             ->post(route('bookings.store'), [
                 'event_name' => 'Oversized Event',
@@ -101,6 +111,13 @@ class BookingSystemTest extends TestCase
 
     public function test_dashboard_reports_when_there_is_no_ongoing_event(): void
     {
-        $this->get('/')->assertOk()->assertSee('There is no ongoing event.');
+        $this->actingAs(User::factory()->create());
+
+        $this->get(route('dashboard'))->assertOk()->assertSee('There is no ongoing event.');
+    }
+
+    public function test_guests_are_redirected_to_login_from_bookings(): void
+    {
+        $this->get('/bookings')->assertRedirect(route('login'));
     }
 }

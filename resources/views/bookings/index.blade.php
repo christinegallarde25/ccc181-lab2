@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('title', 'Bookings')
 
@@ -39,7 +39,7 @@
                                 <form class="d-inline" method="POST" action="{{ route('bookings.destroy', $booking) }}" onsubmit="return confirm('Delete this booking?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+                                    <button class="btn btn-sm btn-outline-primary" type="submit">Delete</button>
                                 </form>
                             </td>
                         </tr>
